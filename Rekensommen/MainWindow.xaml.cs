@@ -143,5 +143,43 @@ namespace Rekensommen
         {
             timerLabel.Content = (DateTime.Now - _stopWatchBegin).ToString(@"mm\:ss\.fff");
         }
+
+        private void resultTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            Range_KeyDown(sender, e);
+            KeyEventArgs keyEventArgs = (KeyEventArgs)e;
+            if (keyEventArgs.Key == Key.Enter)
+            {
+                if (CheckResult(resultTextBox))
+                {
+                    resultTextBox.IsEnabled = false;
+                }
+                else
+                {
+                    resultTextBox.Clear();
+                    resultTextBox.Focus();
+                }
+            }
+        }
+
+        private bool CheckResult(TextBox textBox)
+        {
+            int.TryParse(textBox.Text, out int result);
+            if (result == _expectedResult)
+            {
+                textBox.Background = Brushes.LightGreen;
+                return true;
+            }
+            else
+            {
+                textBox.Background = Brushes.LightCoral;
+                return false;
+            }
+        }
+
+        private void showTimeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(DateTime.Now.ToLongDateString(), "Datum en tijd");
+        }
     }
 }

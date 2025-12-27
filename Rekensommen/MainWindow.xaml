@@ -71,9 +71,9 @@
         <Label Content="+" Name="operatorLabel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100"/>
         <Label Content="_" Name="secondNumberLabel" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="100"/>
         <Label Content="=" Name="EqualsLabel" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100" MouseDoubleClick="EqualsLabel_MouseDoubleClick" />
-        <TextBox Text="??" Name="resultTextBox" Grid.Row="1" Grid.Column="4" FontSize="80" TextAlignment="Center" Margin="10" VerticalContentAlignment="Center"/>
+        <TextBox Text="??" Name="resultTextBox" Grid.Row="1" Grid.Column="4" FontSize="80" TextAlignment="Center" Margin="10" VerticalContentAlignment="Center" KeyDown="resultTextBox_KeyDown"/>
         <Label Name="infoLabel" Content="Instructies" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25"/>
-        <Button Name="showTimeButton" Grid.Row="2" Grid.Column="2" Height="80" Width="80"/>
+        <Button Name="showTimeButton" Grid.Row="2" Grid.Column="2" Height="80" Width="80" Click="showTimeButton_Click"/>
         <Label Content="00:00.000" Name="timerLabel" Foreground="White" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>
