@@ -32,23 +32,23 @@
                 <StackPanel Grid.Column="0" Margin="5">
                     <Label Content="Getal 1" FontWeight="ExtraBold" Margin="-5 0 0 0"/>
                     <Label Content="Van:" Margin="-5"/>
-                    <TextBox Name="firstNumberMinTextBox" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
+                    <TextBox Name="firstNumberMinTextBox" Text="0" TextAlignment="Right" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
                     <Label Content="Tot:" Margin="-5 5 -5 -5"/>
-                    <TextBox Name="firstNumberMaxTextBox" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
+                    <TextBox Name="firstNumberMaxTextBox" Text="100" TextAlignment="Right" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Margin="5">
                     <Label Content="Getal 2" FontWeight="ExtraBold" Margin="-5 0 0 0"/>
                     <Label Content="Van:" Margin="-5"/>
-                    <TextBox Name="secondNumberMinTextBox" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
+                    <TextBox Name="secondNumberMinTextBox" Text="0" TextAlignment="Right" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
                     <Label Content="Tot:" Margin="-5 5 -5 -5"/>
-                    <TextBox Name="secondNumberMacTextBox" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
+                    <TextBox Name="secondNumberMaxTextBox" Text="100" TextAlignment="Right" TextChanged="Range_TextChanged" KeyDown="Range_KeyDown"/>
                 </StackPanel>
             </Grid>
         </GroupBox>
         <GroupBox Header="Bewerkingen" Grid.Column="2" Grid.Row="0" Padding="5" Margin="5">
             <StackPanel>
-                <CheckBox Content="Optellen" Name="addOperatorCheckBox" Margin="5"/>
-                <CheckBox Content="Aftrekken" Name="subtractOperatorCheckBox" Margin="5"/>
+                <CheckBox Content="Optellen" Name="addOperatorCheckBox" Margin="5" IsChecked="True"/>
+                <CheckBox Content="Aftrekken" Name="subtractOperatorCheckBox" Margin="5" IsChecked="True"/>
             </StackPanel>
         </GroupBox>
         <GroupBox Header="Uitkomst" Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" Padding="5" Margin="5">
@@ -70,8 +70,8 @@
         <Label Content="_" Name="firstNumberLabel" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="100"/>
         <Label Content="+" Name="operatorLabel" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100"/>
         <Label Content="_" Name="secondNumberLabel" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="100"/>
-        <Label Content="=" Name="EqualsLabel" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100"/>
-        <TextBox Text="??" Name="resultTextBox" Grid.Row="1" Grid.Column="4" FontSize="100" TextAlignment="Center" Margin="10" VerticalContentAlignment="Center"/>
+        <Label Content="=" Name="EqualsLabel" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100" MouseDoubleClick="EqualsLabel_MouseDoubleClick" />
+        <TextBox Text="??" Name="resultTextBox" Grid.Row="1" Grid.Column="4" FontSize="80" TextAlignment="Center" Margin="10" VerticalContentAlignment="Center"/>
         <Label Name="infoLabel" Content="Instructies" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25"/>
         <Button Name="showTimeButton" Grid.Row="2" Grid.Column="2" Height="80" Width="80"/>
         <Label Content="00:00.000" Name="timerLabel" Foreground="White" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
