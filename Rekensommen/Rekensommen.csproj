@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\clock.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\clock.png" />
+  </ItemGroup>
+
 </Project>

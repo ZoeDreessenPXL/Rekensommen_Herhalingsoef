@@ -21,6 +21,7 @@ namespace Rekensommen
         int _expectedResult;
         DispatcherTimer _stopWatch = new DispatcherTimer();
         DateTime _stopWatchBegin;
+        TimeSpan _highScore = TimeSpan.MaxValue;
 
         public MainWindow()
         {
@@ -80,21 +81,27 @@ namespace Rekensommen
             int.TryParse(firstNumberMaxTextBox.Text, out int firstNumberMax);
             int.TryParse(secondNumberMinTextBox.Text, out int secondNumberMin);
             int.TryParse(secondNumberMaxTextBox.Text, out int secondNumberMax);
-
-            number1 = _random.Next(firstNumberMin, firstNumberMax++);
-            number2 = _random.Next(secondNumberMin, secondNumberMax++);
-
+            bool negativeOutcome = (bool)disallowNegativeOutcomeRadioButton.IsChecked;
+            bool maximumOutcome = (bool)applayMaximumRadioButton.IsChecked;
+            int.TryParse(maximumResultTextBox.Text, out int maximumResult);
             string sign = GetRandomOperator();
 
-            switch (sign)
+            do
             {
-                case "+":
-                    _expectedResult = number1 + number2;
-                    break;
-                case "-": 
-                    _expectedResult = number1 - number2;
-                    break;
-            }
+                number1 = _random.Next(firstNumberMin, firstNumberMax + 1);
+                number2 = _random.Next(secondNumberMin, secondNumberMax + 1);
+
+                switch (sign)
+                {
+                    case "+":
+                        _expectedResult = number1 + number2;
+                        break;
+                    case "-":
+                        _expectedResult = number1 - number2;
+                        break;
+                }
+            } while ((negativeOutcome && _expectedResult < 0)
+            || (maximumOutcome && _expectedResult > maximumResult));
 
             firstNumberLabel.Content = number1.ToString();
             operatorLabel.Content = sign;
@@ -146,13 +153,18 @@ namespace Rekensommen
 
         private void resultTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            Range_KeyDown(sender, e);
             KeyEventArgs keyEventArgs = (KeyEventArgs)e;
             if (keyEventArgs.Key == Key.Enter)
             {
                 if (CheckResult(resultTextBox))
                 {
                     resultTextBox.IsEnabled = false;
+                    _stopWatch.Stop();
+                    if ((DateTime.Now - _stopWatchBegin) < _highScore)
+                    {
+                        _highScore = DateTime.Now - _stopWatchBegin;
+                        MessageBox.Show($"New high score: {_highScore.ToString(@"mm\:ss\.fff")}", "Congrats");
+                    }
                 }
                 else
                 {
@@ -180,6 +192,19 @@ namespace Rekensommen
         private void showTimeButton_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(DateTime.Now.ToLongDateString(), "Datum en tijd");
+        }
+
+        private void applayMaximum_CheckedChanged(object sender, RoutedEventArgs e)
+        {
+            RadioButton radio = (RadioButton)sender;
+            if (radio.IsChecked == true)
+            {
+                maximumResultTextBox.IsEnabled = true;
+            }
+            else
+            {
+                maximumResultTextBox.IsEnabled = false;
+            }
         }
     }
 }

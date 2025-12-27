@@ -55,15 +55,15 @@
             <StackPanel>
                 <Label Content="Negatieve getallen toegelaten?"/>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="Ja" Margin="5"/>
-                    <RadioButton Content="Nee" Margin="5"/>
+                    <RadioButton Content="Ja" Margin="5" IsChecked="True"/>
+                    <RadioButton Content="Nee" Name="disallowNegativeOutcomeRadioButton" Margin="5"/>
                 </StackPanel>
                 <Label Content="Maximum toepassen?"/>
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Content="Ja" Margin="5"/>
-                    <RadioButton Content="Nee" Margin="5"/>
+                    <RadioButton Content="Ja" Margin="5" Name="applayMaximumRadioButton" Checked="applayMaximum_CheckedChanged" Unchecked="applayMaximum_CheckedChanged"/>
+                    <RadioButton Content="Nee" Margin="5" IsChecked="True"/>
                     <Label Content="Maximum:" Margin="5 0 0 0"/>
-                    <TextBox Name="maximumResultTextBox" Width="30" Text="100" TextAlignment="Right"/>
+                    <TextBox Name="maximumResultTextBox" Width="30" Text="100" TextAlignment="Right" KeyDown="Range_KeyDown" IsEnabled="False"/>
                 </StackPanel>
             </StackPanel>
         </GroupBox>
@@ -73,7 +73,9 @@
         <Label Content="=" Name="EqualsLabel" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100" MouseDoubleClick="EqualsLabel_MouseDoubleClick" />
         <TextBox Text="??" Name="resultTextBox" Grid.Row="1" Grid.Column="4" FontSize="80" TextAlignment="Center" Margin="10" VerticalContentAlignment="Center" KeyDown="resultTextBox_KeyDown"/>
         <Label Name="infoLabel" Content="Instructies" Foreground="White" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" FontSize="25"/>
-        <Button Name="showTimeButton" Grid.Row="2" Grid.Column="2" Height="80" Width="80" Click="showTimeButton_Click"/>
+        <Button Name="showTimeButton" Grid.Row="2" Grid.Column="2" Height="80" Width="80" Click="showTimeButton_Click">
+            <Image Source="/Images/clock.png"/>
+        </Button>
         <Label Content="00:00.000" Name="timerLabel" Foreground="White" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Window>
